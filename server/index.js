@@ -4,12 +4,16 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
+import postRoutes from './routes/posts.js';
+
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 dotenv.config();
+app.use('/posts', postRoutes);
+
 
 const CONNECTION_URL = process.env.DATABASE;
 const PORT = process.env.PORT || 5000;
